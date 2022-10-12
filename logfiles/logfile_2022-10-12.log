@@ -1,0 +1,2 @@
+{"level":"error","message":"Email already exists Email already exists","stack":"Error: Email already exists\n    at addUser (/Users/sanjeev/Projects/liveapinode/controllers/user.controller.js:41:21)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}
+{"level":"error","message":"Email already exists Email already exists","stack":"Error: Email already exists\n    at addUser (/Users/sanjeev/Projects/liveapinode/controllers/user.controller.js:41:21)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}
