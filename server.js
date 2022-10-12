@@ -1,5 +1,6 @@
 const express = require("express");
 require('express-async-errors');
+
 require('./logger/logger');
 const morgan = require("morgan");
 const handleErrors = require("./middlewares/error.handler.middlewares");
