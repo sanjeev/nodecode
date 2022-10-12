@@ -34,7 +34,7 @@ application.use(morgan("dev"));
 //Promise.reject(new Error("Error from Promise reject !!"))
 
 application.get("/", (req, res) => {
-    res.json({ message: "Success !!" });
+    res.json({ message: "api Success full run !!" });
 });
 
 const APIRouter = express.Router();
