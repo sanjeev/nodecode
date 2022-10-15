@@ -22,7 +22,7 @@ const {
 application.use(helmet());
 
 var corsOptions = {
-    origin: 'https://abc.com',
+    origin: 'https://nodecake.herokuapp.com/',
     optionsSuccessStatus: 200
 }
 application.use(cors(corsOptions));
