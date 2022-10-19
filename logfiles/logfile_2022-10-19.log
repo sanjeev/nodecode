@@ -1,0 +1,1 @@
+{"level":"error","message":"Invalid Credential Invalid Credential","stack":"Error: Invalid Credential\n    at loginUser (/Users/sanjeev/Projects/liveapinode/controllers/user.controller.js:88:25)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}

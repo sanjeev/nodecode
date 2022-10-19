@@ -3,6 +3,13 @@ var bcrypt = require('bcryptjs');
 const Joi = require("joi")
 const jwt = require("jsonwebtoken")
 
+function getStandardResponse(status, message, data) {
+    return {
+        status: status,
+        message: message,
+        data: data
+    }
+}
 function validateUserForRegistration(user) {
     const schema = Joi.object({
         first_name: Joi.string().min(4).max(20).required(),
@@ -74,7 +81,8 @@ const loginUser = async (req, res, next) => {
             }
 
             const token = jwt.sign(payload, process.env.JWT_KEY);
-            return res.json({ message: "Login Success !!", token })
+            return res.json(getStandardResponse(true, "Login Success !!", token));
+            //return res.json({ message: "Login Success !!", token })
         } else {
             res.status(500);
             return next(new Error("Invalid Credential"));
