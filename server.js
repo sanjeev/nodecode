@@ -22,7 +22,7 @@ const {
 application.use(helmet());
 
 var corsOptions = {
-    origin: 'http://localhost:3000/',
+    origin: '*',
     optionsSuccessStatus: 200
 }
 application.use('*', cors(corsOptions));
