@@ -60,6 +60,7 @@ function validateLoginCredentials(credential) {
 }
 
 const loginUser = async (req, res, next) => {
+
     const result = validateLoginCredentials(req.body);
     if (result.error) {
         res.status(400);

@@ -25,7 +25,7 @@ var corsOptions = {
     origin: 'https://nodecake.herokuapp.com/',
     optionsSuccessStatus: 200
 }
-application.use(cors(corsOptions));
+application.use('*', cors(corsOptions));
 
 require('./database/db.connection')();
 application.use(express.json());
