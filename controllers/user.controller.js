@@ -82,7 +82,17 @@ const loginUser = async (req, res, next) => {
             }
 
             const token = jwt.sign(payload, process.env.JWT_KEY);
-            return res.json(getStandardResponse(true, "Login Success !!", token));
+            const data =
+            {
+                "token": token,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.email,
+                "userTypeId": user.userTypeId,
+                "imageUrl": ''
+            }
+
+            return res.json(getStandardResponse(true, "Login Success !!", data));
             //return res.json({ message: "Login Success !!", token })
         } else {
             res.status(500);
