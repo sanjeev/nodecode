@@ -1,6 +1,13 @@
 const { Size } = require('../models/size.model')
 const Joi = require("joi")
 
+function getStandardResponse(status, message, data) {
+    return {
+        status: status,
+        message: message,
+        data: data
+    }
+}
 const getAllSizes = async (req, res, next) => {
     const limit = Number.parseInt(req.query.pagesize) || 5;
     const page = Number.parseInt(req.query.page) || 1;
@@ -46,7 +53,8 @@ const saveSize = async (req, res, next) => {
         const isExists = await Size.isExists(name);
         if (!isExists) {
             const result = await size.save();
-            return res.json(result);
+            return res.json(getStandardResponse(true, "Add Successfully !!", result));
+            //return res.json(result);
         } else {
             res.status(400);
             return next(new Error(`Size Name ${name} already exists !!`));
