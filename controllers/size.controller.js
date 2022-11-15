@@ -17,7 +17,13 @@ const getAllSizes = async (req, res, next) => {
     const sizes = await Size.find({ isActive: true }).sort({ name: sort_by }).skip(skip).limit(limit);
     let count = await Size.countDocuments({ isActive: true });
     if (sizes) {
-        res.json({ sizes, count });
+        const data =
+        {
+            "sizes": sizes,
+            "count": count,
+        }
+        return res.json(getStandardResponse(true, "Size List !!", data));
+        //res.json({ sizes, count });
     } else {
         res.status(400);
         return next(new Error(`No Record Found !!`));
