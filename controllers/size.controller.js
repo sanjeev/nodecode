@@ -8,6 +8,7 @@ function getStandardResponse(status, message, data) {
         data: data
     }
 }
+
 const getAllSizes = async (req, res, next) => {
     const limit = Number.parseInt(req.query.pagesize) || 5;
     const page = Number.parseInt(req.query.page) || 1;
