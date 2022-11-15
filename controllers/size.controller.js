@@ -14,7 +14,7 @@ const getAllSizes = async (req, res, next) => {
     const page = Number.parseInt(req.query.page) || 1;
     const sort_by = req.query.sort;
     const skip = limit * (page - 1);
-    const sizes = await Size.find({ isActive: true }).sort({ createdOn: sort_by }).skip(skip).limit(limit);
+    const sizes = await Size.find({ isActive: true }).sort({ name: sort_by }).skip(skip).limit(limit);
     let count = await Size.countDocuments({ isActive: true });
     if (sizes) {
         const data =
