@@ -10,7 +10,7 @@ function getStandardResponse(status, message, data) {
 }
 
 const getAllSizes = async (req, res, next) => {
-    const limit = Number.parseInt(req.query.pagesize) || 5;
+    const limit = Number.parseInt(req.query.pagesize) || '';
     const page = Number.parseInt(req.query.page) || 1;
     const sort_by = req.query.sort;
     const skip = limit * (page - 1);
