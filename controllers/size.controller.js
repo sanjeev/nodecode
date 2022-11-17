@@ -91,6 +91,7 @@ const updateSize = async (req, res, next) => {
             size = Object.assign(size, result.value, { modifiedBy: loggedInUser.id });
             size = await size.save();
             res.json(size);
+
         } else {
             res.status(400);
             return next(new Error(`Size Name ${name} already exists !!`));
@@ -111,11 +112,12 @@ const deleteSize = async (req, res, next) => {
         return next(new Error(result.error.details[0].message));
     } else {
         const sizeId = result.value.id;
-        let size = await Size.findOne({ _id: sizeId, isActive: true });
+        let size = await Size.deleteOne({ _id: sizeId, isActive: true });
         if (size) {
-            size = Object.assign(size, { isActive: false, modifiedBy: loggedInUser.id });
-            size = await size.save();
-            res.json(size);
+            // size = Object.assign(size, { isActive: false, modifiedBy: loggedInUser.id });
+            // size = await size.deleteOne();
+            return res.json(getStandardResponse(true, "size delete !!", sizeId));
+            //res.json(size);
         } else {
             res.status(400);
             return next(new Error(`No Record Found !!`));
