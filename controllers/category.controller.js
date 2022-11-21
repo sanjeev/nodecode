@@ -123,11 +123,12 @@ const deleteCategory = async (req, res, next) => {
         return next(new Error(result.error.details[0].message));
     } else {
         const categoryId = result.value.id;
-        let category = await Category.findOne({ _id: categoryId, isActive: true });
+        let category = await Category.deleteOne({ _id: categoryId, isActive: true });
         if (category) {
-            category = Object.assign(category, { isActive: false, modifiedBy: loggedInUser.id });
-            category = await category.save();
-            res.json(category);
+            // category = Object.assign(category, { isActive: false, modifiedBy: loggedInUser.id });
+            // category = await category.save();
+            // res.json(category);
+            return res.json(getStandardResponse(true, "category delete !!", categoryId));
         } else {
             res.status(400);
             return next(new Error(`No Record Found !!`));
