@@ -18,7 +18,13 @@ const getAllcategories = async (req, res, next) => {
     const categories = await Category.find({ isActive: true }).sort({ name: sort_by }).skip(skip).limit(limit);
     let count = await Category.countDocuments({ isActive: true });
     if (categories) {
-        res.json({ categories, count });
+        const data =
+        {
+            "categories": categories,
+            "count": count,
+        }
+        return res.json(getStandardResponse(true, "Categories List !!", data));
+        // res.json({ categories, count });
     } else {
         res.status(400);
         return next(new Error(`No Record Found !!`));
