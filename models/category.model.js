@@ -5,18 +5,7 @@ const categorySchema = mongoose.Schema({
         type: String,
         required: [true, 'Category Name can not be blank']
     },
-    title: {
-        type: String,
-        required: [true, 'Category Title can not be blank']
-    },
-    isSave: {
-        type: Number,
-        required: [true, 'Save Value can not be blank']
-    },
-    link: {
-        type: String,
-        required: [true, 'Category Link can not be blank']
-    },
+
     imagePath: {
         type: String,
         required: [true, 'Category Image Path can not be blank']

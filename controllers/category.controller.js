@@ -3,7 +3,13 @@ const Joi = require("joi")
 const _ = require("underscore")
 
 const { UPLOAD_CATEGORY_FOLDER } = process.env;
-
+function getStandardResponse(status, message, data) {
+    return {
+        status: status,
+        message: message,
+        data: data
+    }
+}
 const getAllcategories = async (req, res, next) => {
     const limit = Number.parseInt(req.query.pagesize) || 5;
     const page = Number.parseInt(req.query.page) || 1;
@@ -31,6 +37,7 @@ const getCategoryById = async (req, res, next) => {
 }
 
 const saveCategory = async (req, res, next) => {
+
     if (!req.file || _.isEmpty(req.file)) {
         res.status(400);
         return next(new Error(`No file uploaded`));
@@ -41,9 +48,7 @@ const saveCategory = async (req, res, next) => {
     const imagePath = UPLOAD_CATEGORY_FOLDER + "/" + req.file.filename;
     const schema = Joi.object({
         name: Joi.string().min(1).max(20).required(),
-        title: Joi.string().min(1).max(20).required(),
-        isSave: Joi.number().min(1).max(99).required(),
-        link: Joi.string().min(20).max(200).required(),
+
         imagePath: Joi.string().min(10).max(200).required()
     });
 
@@ -59,7 +64,8 @@ const saveCategory = async (req, res, next) => {
         const isExists = await Category.isExists(name);
         if (!isExists) {
             const result = await category.save();
-            return res.json(result);
+            return res.json(getStandardResponse(true, "Add Successfully !!", result));
+            //return res.json(result);
         } else {
             res.status(400);
             return next(new Error(`Category Name ${name} already exists !!`));
@@ -74,9 +80,6 @@ const updateCategory = async (req, res, next) => {
     const schema = Joi.object({
         id: Joi.string().required(),
         name: Joi.string().min(1).max(20).required(),
-        title: Joi.string().min(1).max(20).required(),
-        isSave: Joi.number().min(1).max(99).required(),
-        link: Joi.string().min(20).max(200).required(),
         imagePath: Joi.string().min(10).max(200).required()
     });
 
